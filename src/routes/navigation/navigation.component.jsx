@@ -16,7 +16,7 @@ const Navigation = () => {
             SHOP
           </Link>
         </div>
-      </div>{' '}
+      </div>
       <Outlet />
     </Fragment>
   );
