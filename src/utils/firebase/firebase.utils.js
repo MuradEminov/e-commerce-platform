@@ -40,4 +40,20 @@ export const createUserDocumentFromAuth = async (userAuth) => {
   const userSnapshot = await getDoc(userDocRef);
   console.log(userSnapshot);
   console.log(userSnapshot.exists());
+
+  // IF USER SNAPHOT DOESN'T EXIST:
+  if (!userSnapshot.exists()) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+    try {
+      await setDoc(userDocRef, {
+        displayName: displayName,
+        email: email,
+        createdAt: createdAt,
+      });
+    } catch (err) {
+      console.log('error creating a user', err.message);
+    }
+  }
+  return userDocRef;
 };

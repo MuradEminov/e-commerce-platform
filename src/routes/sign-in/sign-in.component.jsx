@@ -6,7 +6,7 @@ import {
 const SignIn = () => {
   const logGoogleUser = async () => {
     const { user } = await signInWithGooglePopup(); // destructed the response object
-    createUserDocumentFromAuth(user);
+    const userDocRef = await createUserDocumentFromAuth(user);
   };
 
   return (
