@@ -28,7 +28,18 @@ const SignInForm = () => {
       );
       console.log(response);
       resetFormFields();
-    } catch (err) {}
+    } catch (err) {
+      switch (err.code) {
+        case 'auth/wrong-password':
+          alert('incorrect password for e-mail');
+          break;
+        case 'auth/user-not-found':
+          alert('no user associated with this e-mail');
+          break;
+        default:
+          console.log(err);
+      }
+    }
   };
 
   const resetFormFields = () => {
