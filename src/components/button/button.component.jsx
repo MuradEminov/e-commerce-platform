@@ -1,3 +1,5 @@
+import './button.stylse.scss';
+
 /*
 Button types: 
 
