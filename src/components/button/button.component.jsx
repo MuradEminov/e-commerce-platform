@@ -1,4 +1,4 @@
-import './button.stylse.scss';
+import './button.styles.scss';
 
 /*
 Button types: 
