@@ -29,8 +29,7 @@ const SignInForm = () => {
         email,
         password
       );
-      console.log(user);
-      setCurrentUser(user);
+
       resetFormFields();
     } catch (err) {
       switch (err.code) {
