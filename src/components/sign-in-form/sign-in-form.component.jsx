@@ -47,9 +47,7 @@ const SignInForm = () => {
   };
 
   const signInWithGoogle = async () => {
-    const { user } = await signInWithGooglePopup(); // destructed the "response" object
-
-    const userDocRef = await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup(); // destructed the "response" object
   };
 
   const handleChange = (event) => {
