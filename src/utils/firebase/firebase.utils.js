@@ -11,7 +11,14 @@ import {
   onAuthStateChanged,
 } from 'firebase/auth';
 /* Import Firestore related scripts */
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  writeBatch,
+} from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyB96k2qLrrf_abxEswDS7iThUTCqwwdyi0',
@@ -43,6 +50,21 @@ export const signInWithGoogleRedirect = () =>
 
 /* Create a singletone to work with the Firestore: */
 export const db = getFirestore();
+
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd
+) => {
+  const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
+
+  objectsToAdd.forEach((object) => {
+    const docRef = doc(collectionRef, object.title.toLowerCase());
+    batch.set(docRef, object);
+  });
+  await batch.commit();
+  console.log('done');
+};
 
 export const createUserDocumentFromAuth = async (
   userAuth,
